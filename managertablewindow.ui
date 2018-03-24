@@ -35,7 +35,7 @@
     </font>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="projectTab">
     <attribute name="title">
@@ -187,29 +187,10 @@
     </widget>
    </widget>
   </widget>
-  <widget class="QPushButton" name="newPushButton">
-   <property name="geometry">
-    <rect>
-     <x>50</x>
-     <y>680</y>
-     <width>200</width>
-     <height>50</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Noto Sans CJK SC Regular</family>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>新建</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="updatePushButton">
    <property name="geometry">
     <rect>
-     <x>291</x>
+     <x>50</x>
      <y>680</y>
      <width>200</width>
      <height>50</height>
@@ -228,7 +209,7 @@
   <widget class="QPushButton" name="deletePushButton">
    <property name="geometry">
     <rect>
-     <x>530</x>
+     <x>289</x>
      <y>680</y>
      <width>200</width>
      <height>50</height>
@@ -247,7 +228,7 @@
   <widget class="QPushButton" name="searchPushButton">
    <property name="geometry">
     <rect>
-     <x>770</x>
+     <x>529</x>
      <y>680</y>
      <width>200</width>
      <height>50</height>
@@ -261,6 +242,25 @@
    </property>
    <property name="text">
     <string>条件查找</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="returnPushButton">
+   <property name="geometry">
+    <rect>
+     <x>769</x>
+     <y>680</y>
+     <width>200</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Noto Sans CJK SC Regular</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>返回</string>
    </property>
   </widget>
  </widget>

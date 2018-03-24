@@ -27,6 +27,7 @@ void MainWindow::connects(){
     connect(managerWindow, SIGNAL(signalOpenProjectTableButtonClicked(int)), this, SLOT(slotOpenTableWindow(int)));
     connect(managerWindow, SIGNAL(signalOpenUserTableButtonClicked(int)), this, SLOT(slotOpenTableWindow(int)));
     connect(managerWindow, SIGNAL(signalOpenDeviceTableButtonClicked(int)), this, SLOT(slotOpenTableWindow(int)));
+    connect(managerTableWindow, SIGNAL(signalUpdateInfoButtonClicked(int)), this, SLOT(slotOpenUpdateWindow(int)));
 }
 
 void MainWindow::slotLoginButtonClicked(){
@@ -54,6 +55,23 @@ void MainWindow::slotOpenTableWindow(int tabType){
    }
    mainLayout->addWidget(managerTableWindow);
    mainLayout->setCurrentWidget(managerTableWindow);
+}
+
+void MainWindow::slotOpenUpdateWindow(int type){
+    switch (type) {
+    case 0:
+        updateProjectWindow = new NewAndUpdateProjectWindow;
+        mainLayout->addWidget(updateProjectWindow);
+        mainLayout->setCurrentWidget(updateProjectWindow);
+        break;
+    case 1:
+        updateUserWindow = new NewAndUpdateUserWindow;
+        mainLayout->addWidget(updateUserWindow);
+        mainLayout->setCurrentWidget(updateUserWindow);
+        break;
+    default:
+        break;
+    }
 }
 
 MainWindow::~MainWindow()

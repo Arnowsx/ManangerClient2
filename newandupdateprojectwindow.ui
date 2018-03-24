@@ -13,7 +13,7 @@
   <property name="maximumSize">
    <size>
     <width>1024</width>
-    <height>768</height>
+    <height>630</height>
    </size>
   </property>
   <property name="font">
@@ -23,10 +23,10 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>修改项目</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="projectNameLabel">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -39,7 +39,7 @@
      <string>项目名称</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="projectNameLineEdit">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -80,12 +80,12 @@
      <rect>
       <x>40</x>
       <y>220</y>
-      <width>100</width>
+      <width>130</width>
       <height>30</height>
      </rect>
     </property>
     <property name="text">
-     <string>自动测试时间</string>
+     <string>自动测试时间间隔</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_8">
@@ -192,7 +192,7 @@
      <string>最低温度</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="projectAddressLineEdit">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -202,7 +202,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTimeEdit" name="timeEdit">
+   <widget class="QTimeEdit" name="autoInspectTimeEdit">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -212,7 +212,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTimeEdit" name="timeEdit_2">
+   <widget class="QTimeEdit" name="autoTestTimeEdit">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -222,7 +222,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox">
+   <widget class="QDoubleSpinBox" name="bLowerPressureDoubleSpinBox">
     <property name="geometry">
      <rect>
       <x>800</x>
@@ -232,7 +232,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+   <widget class="QDoubleSpinBox" name="bUpperPressureDoubleSpinBox">
     <property name="geometry">
      <rect>
       <x>800</x>
@@ -242,7 +242,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_3">
+   <widget class="QDoubleSpinBox" name="aLowerPressureDoubleSpinBox">
     <property name="geometry">
      <rect>
       <x>800</x>
@@ -252,7 +252,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_4">
+   <widget class="QDoubleSpinBox" name="aUpperPressureDoubleSpinBox">
     <property name="geometry">
      <rect>
       <x>800</x>
@@ -262,7 +262,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_5">
+   <widget class="QDoubleSpinBox" name="upperFlowDoubleSpinBox">
     <property name="geometry">
      <rect>
       <x>800</x>
@@ -272,7 +272,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_6">
+   <widget class="QDoubleSpinBox" name="lowerFlowDoubleSpinBox">
     <property name="geometry">
      <rect>
       <x>800</x>
@@ -282,7 +282,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_7">
+   <widget class="QDoubleSpinBox" name="upperTemperDoubleSpinBox">
     <property name="geometry">
      <rect>
       <x>800</x>
@@ -292,7 +292,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QDoubleSpinBox" name="doubleSpinBox_8">
+   <widget class="QDoubleSpinBox" name="lowerTemperDoubleSpinBox">
     <property name="geometry">
      <rect>
       <x>800</x>
@@ -302,7 +302,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox">
+   <widget class="QCheckBox" name="isAutoInspectCheckBox">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -315,7 +315,7 @@
      <string>自动巡检</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_2">
+   <widget class="QCheckBox" name="isAutoTestCheckBox">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -328,7 +328,7 @@
      <string>自动测试</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_3">
+   <widget class="QCheckBox" name="isAutoPrintCheckBox">
     <property name="geometry">
      <rect>
       <x>320</x>
@@ -354,7 +354,7 @@
      <string>备注</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit">
+   <widget class="QTextEdit" name="remarkTextEdit">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -364,7 +364,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="savePushButton">
     <property name="geometry">
      <rect>
       <x>780</x>
@@ -377,7 +377,7 @@
      <string>保存</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="resetPushButton">
     <property name="geometry">
      <rect>
       <x>540</x>
@@ -400,7 +400,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>(单位：分钟)</string>
+     <string>(单位：小时)</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_5">

@@ -9,6 +9,9 @@
 #include "managerwindow.h"
 #include "managertablewindow.h"
 #include "networkapi.h"
+#include "newandupdatedevicewindow.h"
+#include "newandupdateprojectwindow.h"
+#include "newandupdateuserwindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -28,6 +31,9 @@ private:
     LoginWindow *loginWindow;
     ManagerWindow *managerWindow;
     ManagerTableWindow *managerTableWindow;
+    NewAndUpdateDeviceWindow *updateDeviceWindow;
+    NewAndUpdateProjectWindow *updateProjectWindow;
+    NewAndUpdateUserWindow *updateUserWindow;
     QStackedLayout *mainLayout;
 
     void connectsBeforeLogin();
@@ -36,6 +42,7 @@ private:
 private slots:
     void slotLoginButtonClicked();
     void slotOpenTableWindow(int tabType);
+    void slotOpenUpdateWindow(int type);
 };
 
 #endif // MAINWINDOW_H

@@ -85,7 +85,7 @@ void ManagerTableWindow::connects(){
     connect(getSelectTabTable, SIGNAL(signalGetDeviceAllRequestFinished(QJsonObject*)), this, SLOT(slotGetDeviceAllRequestFinished(QJsonObject*)));
     connect(getSelectTabTable, SIGNAL(signalGetDeviceAllRequestError(QString)), this ,SLOT(slotGetDeviceAllRequestError(QString)));
 
-    connect(ui->newPushButton, SIGNAL(clicked(bool)), this, SLOT(slotNewInfoButtonClicked()));
+    connect(ui->returnPushButton, SIGNAL(clicked(bool)), this, SLOT(slotReturnButtonClicked()));
     connect(ui->updatePushButton, SIGNAL(clicked(bool)), this, SLOT(slotUpdateInfoButtonClicked()));
     connect(ui->deletePushButton, SIGNAL(clicked(bool)), this, SLOT(slotDeleteInfoButtonClicked()));
     connect(ui->searchPushButton, SIGNAL(clicked(bool)), this, SLOT(slotSearchInfoButtonClicked()));
@@ -190,11 +190,11 @@ void ManagerTableWindow::slotGetUserAllRequestFinished(QJsonObject *reply){
         userName->setText(jsonUserAllObject.value("userName").toString());
         ui->userTableWidget->setItem(rowNum, 1, userName);
         type->setText(jsonUserAllObject.value("type").toString());
-        ui->userTableWidget->setItem(rowNum,2, type);
+        ui->userTableWidget->setItem(rowNum, 2, type);
         projectId->setText(QString::number(jsonUserAllObject.value("project").toObject().value("projectId").toInt()));
-        ui->projectTableWidget->setItem(rowNum, 3, projectId);
+        ui->userTableWidget->setItem(rowNum, 3, projectId);
         projectName->setText(jsonUserAllObject.value("project").toObject().value("name").toString());
-        ui->projectTableWidget->setItem(rowNum, 4, projectName);
+        ui->userTableWidget->setItem(rowNum, 4, projectName);
     }
 }
 
@@ -273,7 +273,7 @@ void ManagerTableWindow::slotDeleteInfoButtonClicked(){
     ;
 }
 
-void ManagerTableWindow::slotNewInfoButtonClicked(){
+void ManagerTableWindow::slotReturmButtonClicked(){
     ;
 }
 

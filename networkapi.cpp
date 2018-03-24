@@ -294,7 +294,7 @@ void NetworkApi::getUserInfoRequest(){
 
 void NetworkApi::getUserAllRequest(){
     QByteArray array;
-    array.append("keys=userName");
+    array.append("keys=");
 //    array.append("&keys=userId");
 //    array.append("&keys=projectId");
 //    array.append("&keys=type");

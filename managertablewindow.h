@@ -33,6 +33,11 @@ private:
 
     int tableType;
 
+signals:
+    void signalUpdateInfoButtonClicked(int type);
+    void signalDeleteInfoButtonClicked(int type);
+    void signalSearchInfoButtonClicked(int type);
+    void signalReturnButtonClicked();
 
 private slots:
     void slotGetProjectAllRequestFinished(QJsonObject *reply);
@@ -45,7 +50,7 @@ private slots:
 
     void slotUpdateInfoButtonClicked();
     void slotDeleteInfoButtonClicked();
-    void slotNewInfoButtonClicked();
+    void slotReturnButtonClicked();
     void slotSearchInfoButtonClicked();
 };
 
