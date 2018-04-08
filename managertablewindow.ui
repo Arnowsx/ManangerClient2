@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>末端试水系统</string>
   </property>
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
@@ -57,7 +57,7 @@
       <enum>Qt::SolidLine</enum>
      </property>
      <property name="sortingEnabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="cornerButtonEnabled">
       <bool>true</bool>
@@ -66,7 +66,7 @@
       <number>20</number>
      </property>
      <property name="columnCount">
-      <number>16</number>
+      <number>17</number>
      </property>
      <attribute name="horizontalHeaderCascadingSectionResizes">
       <bool>false</bool>
@@ -113,6 +113,7 @@
      <column/>
      <column/>
      <column/>
+     <column/>
     </widget>
    </widget>
    <widget class="QWidget" name="userTab">
@@ -127,6 +128,9 @@
        <width>1021</width>
        <height>601</height>
       </rect>
+     </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
      </property>
      <property name="rowCount">
       <number>1</number>
@@ -161,16 +165,20 @@
        <height>601</height>
       </rect>
      </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
      <property name="rowCount">
       <number>1</number>
      </property>
      <property name="columnCount">
-      <number>13</number>
+      <number>14</number>
      </property>
      <attribute name="horizontalHeaderDefaultSectionSize">
       <number>120</number>
      </attribute>
      <row/>
+     <column/>
      <column/>
      <column/>
      <column/>
@@ -190,9 +198,9 @@
   <widget class="QPushButton" name="updatePushButton">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>240</x>
      <y>680</y>
-     <width>200</width>
+     <width>150</width>
      <height>50</height>
     </rect>
    </property>
@@ -209,9 +217,9 @@
   <widget class="QPushButton" name="deletePushButton">
    <property name="geometry">
     <rect>
-     <x>289</x>
+     <x>430</x>
      <y>680</y>
-     <width>200</width>
+     <width>150</width>
      <height>50</height>
     </rect>
    </property>
@@ -228,9 +236,9 @@
   <widget class="QPushButton" name="searchPushButton">
    <property name="geometry">
     <rect>
-     <x>529</x>
+     <x>620</x>
      <y>680</y>
-     <width>200</width>
+     <width>150</width>
      <height>50</height>
     </rect>
    </property>
@@ -247,9 +255,9 @@
   <widget class="QPushButton" name="returnPushButton">
    <property name="geometry">
     <rect>
-     <x>769</x>
+     <x>810</x>
      <y>680</y>
-     <width>200</width>
+     <width>150</width>
      <height>50</height>
     </rect>
    </property>
@@ -261,6 +269,25 @@
    </property>
    <property name="text">
     <string>返回</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="refreshPushButton">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>680</y>
+     <width>150</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Noto Sans CJK SC Regular</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>刷新</string>
    </property>
   </widget>
  </widget>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1024</width>
-    <height>630</height>
+    <width>539</width>
+    <height>477</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -44,7 +44,7 @@
      <rect>
       <x>210</x>
       <y>40</y>
-      <width>200</width>
+      <width>271</width>
       <height>30</height>
      </rect>
     </property>
@@ -62,290 +62,21 @@
      <string>项目地址</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>160</y>
-      <width>130</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>自测巡检时间间隔</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_7">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>220</y>
-      <width>130</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>自动测试时间间隔</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_8">
-    <property name="geometry">
-     <rect>
-      <x>550</x>
-      <y>40</y>
-      <width>150</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>打开阀门前最低压力</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_9">
-    <property name="geometry">
-     <rect>
-      <x>550</x>
-      <y>100</y>
-      <width>150</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>打开阀门前最高压力</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_10">
-    <property name="geometry">
-     <rect>
-      <x>550</x>
-      <y>160</y>
-      <width>150</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>打开阀门后最低压力</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_11">
-    <property name="geometry">
-     <rect>
-      <x>550</x>
-      <y>230</y>
-      <width>150</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>打开阀门后最高压力</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_12">
-    <property name="geometry">
-     <rect>
-      <x>550</x>
-      <y>290</y>
-      <width>80</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>最高流量</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_13">
-    <property name="geometry">
-     <rect>
-      <x>550</x>
-      <y>350</y>
-      <width>80</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>最低流量</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_14">
-    <property name="geometry">
-     <rect>
-      <x>550</x>
-      <y>410</y>
-      <width>80</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>最高温度</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_15">
-    <property name="geometry">
-     <rect>
-      <x>550</x>
-      <y>470</y>
-      <width>80</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>最低温度</string>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="projectAddressLineEdit">
     <property name="geometry">
      <rect>
       <x>210</x>
       <y>100</y>
-      <width>200</width>
+      <width>271</width>
       <height>30</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QTimeEdit" name="autoInspectTimeEdit">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>160</y>
-      <width>70</width>
-      <height>30</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTimeEdit" name="autoTestTimeEdit">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>220</y>
-      <width>70</width>
-      <height>30</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="bLowerPressureDoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>40</y>
-      <width>70</width>
-      <height>30</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="bUpperPressureDoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>100</y>
-      <width>70</width>
-      <height>30</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="aLowerPressureDoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>160</y>
-      <width>70</width>
-      <height>30</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="aUpperPressureDoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>230</y>
-      <width>70</width>
-      <height>30</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="upperFlowDoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>290</y>
-      <width>70</width>
-      <height>30</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="lowerFlowDoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>350</y>
-      <width>70</width>
-      <height>30</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="upperTemperDoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>410</y>
-      <width>70</width>
-      <height>30</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="lowerTemperDoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>470</y>
-      <width>70</width>
-      <height>30</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="isAutoInspectCheckBox">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>560</y>
-      <width>100</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>自动巡检</string>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="isAutoTestCheckBox">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>560</y>
-      <width>100</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>自动测试</string>
-    </property>
-   </widget>
-   <widget class="QCheckBox" name="isAutoPrintCheckBox">
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>560</y>
-      <width>100</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>自动打印</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>270</y>
+      <y>160</y>
       <width>50</width>
       <height>30</height>
      </rect>
@@ -358,17 +89,17 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>310</y>
-      <width>371</width>
-      <height>231</height>
+      <y>200</y>
+      <width>441</width>
+      <height>161</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="savePushButton">
     <property name="geometry">
      <rect>
-      <x>780</x>
-      <y>550</y>
+      <x>280</x>
+      <y>390</y>
       <width>200</width>
       <height>50</height>
      </rect>
@@ -380,8 +111,8 @@
    <widget class="QPushButton" name="resetPushButton">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>550</y>
+      <x>40</x>
+      <y>390</y>
       <width>200</width>
       <height>50</height>
      </rect>
@@ -390,134 +121,17 @@
      <string>重置</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="projectIdLabel">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>160</y>
-      <width>100</width>
+      <x>10</x>
+      <y>0</y>
+      <width>121</width>
       <height>30</height>
      </rect>
     </property>
     <property name="text">
-     <string>(单位：小时)</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>220</y>
-      <width>100</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>(单位：分钟)</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_16">
-    <property name="geometry">
-     <rect>
-      <x>880</x>
-      <y>40</y>
-      <width>100</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>(单位：MPa)</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_17">
-    <property name="geometry">
-     <rect>
-      <x>880</x>
-      <y>100</y>
-      <width>100</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>(单位：MPa)</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_18">
-    <property name="geometry">
-     <rect>
-      <x>880</x>
-      <y>160</y>
-      <width>100</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>(单位：MPa)</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_19">
-    <property name="geometry">
-     <rect>
-      <x>880</x>
-      <y>230</y>
-      <width>100</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>(单位：MPa)</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_20">
-    <property name="geometry">
-     <rect>
-      <x>880</x>
-      <y>290</y>
-      <width>100</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>(单位：L/Min)</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_21">
-    <property name="geometry">
-     <rect>
-      <x>880</x>
-      <y>350</y>
-      <width>100</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>(单位：L/Min)</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_22">
-    <property name="geometry">
-     <rect>
-      <x>880</x>
-      <y>410</y>
-      <width>100</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>(单位：℃)</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_23">
-    <property name="geometry">
-     <rect>
-      <x>880</x>
-      <y>470</y>
-      <width>100</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>(单位：℃)</string>
+     <string>【未知项目ID】</string>
     </property>
    </widget>
   </widget>

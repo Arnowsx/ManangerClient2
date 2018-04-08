@@ -60,7 +60,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>末端试水系统</string>
   </property>
   <property name="styleSheet">
    <string notr="true">#ProjectManager{
@@ -212,7 +212,7 @@ border-radius:5px
      </font>
     </property>
     <property name="text">
-     <string>备        注</string>
+     <string>备     注</string>
     </property>
    </widget>
    <widget class="QTextEdit" name="projectNoteTextEdit">
@@ -417,7 +417,7 @@ border-radius:5px
      <rect>
       <x>650</x>
       <y>25</y>
-      <width>140</width>
+      <width>171</width>
       <height>35</height>
      </rect>
     </property>
@@ -436,7 +436,7 @@ border-radius:5px
      <rect>
       <x>650</x>
       <y>80</y>
-      <width>140</width>
+      <width>171</width>
       <height>35</height>
      </rect>
     </property>
@@ -556,7 +556,7 @@ border-radius:5px
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>30</y>
+      <y>25</y>
       <width>80</width>
       <height>25</height>
      </rect>
@@ -568,7 +568,7 @@ border-radius:5px
      </font>
     </property>
     <property name="text">
-     <string>设    备ID</string>
+     <string>设备  ID</string>
     </property>
    </widget>
    <widget class="QLabel" name="deviceAdressLabel">
@@ -594,7 +594,7 @@ border-radius:5px
     <property name="geometry">
      <rect>
       <x>550</x>
-      <y>30</y>
+      <y>25</y>
       <width>80</width>
       <height>20</height>
      </rect>
@@ -613,8 +613,8 @@ border-radius:5px
     <property name="geometry">
      <rect>
       <x>650</x>
-      <y>25</y>
-      <width>140</width>
+      <y>20</y>
+      <width>181</width>
       <height>35</height>
      </rect>
     </property>
@@ -629,7 +629,7 @@ border-radius:5px
     <property name="geometry">
      <rect>
       <x>260</x>
-      <y>130</y>
+      <y>125</y>
       <width>260</width>
       <height>35</height>
      </rect>
@@ -645,7 +645,7 @@ border-radius:5px
     <property name="geometry">
      <rect>
       <x>260</x>
-      <y>25</y>
+      <y>20</y>
       <width>260</width>
       <height>35</height>
      </rect>
@@ -661,7 +661,7 @@ border-radius:5px
     <property name="geometry">
      <rect>
       <x>550</x>
-      <y>85</y>
+      <y>80</y>
       <width>80</width>
       <height>20</height>
      </rect>
@@ -680,8 +680,8 @@ border-radius:5px
     <property name="geometry">
      <rect>
       <x>650</x>
-      <y>80</y>
-      <width>140</width>
+      <y>75</y>
+      <width>181</width>
       <height>35</height>
      </rect>
     </property>
@@ -696,7 +696,7 @@ border-radius:5px
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>80</y>
+      <y>75</y>
       <width>80</width>
       <height>35</height>
      </rect>
@@ -715,7 +715,7 @@ border-radius:5px
     <property name="geometry">
      <rect>
       <x>260</x>
-      <y>80</y>
+      <y>75</y>
       <width>261</width>
       <height>35</height>
      </rect>

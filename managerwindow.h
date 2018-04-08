@@ -19,11 +19,13 @@ public:
 
     void initWindow();
     void connects();
+    void refresh();
 
 private:
     Ui::ManagerWindow *ui;
     NetworkApi *getProjectAccess;
     QStringList *projectList;
+    NetworkApi *getInfoApi;
 
 signals:
     void signalOpenProjectTableButtonClicked(int tabType);
@@ -38,6 +40,8 @@ private slots:
     void slotOpenProjectTableButton();
     void slotOpenUserTableButton();
     void slotOpenDeviceTableButton();
+
+    void slotAddSuccess(int);
 
     void slotGetProjectInfoRequestFinished(QJsonObject *reply);
     void slotGetProjectInfoRequestError(QString errorinfo);

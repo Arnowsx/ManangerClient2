@@ -53,12 +53,13 @@ void NetworkApi::slotRequestFinished(QNetworkReply *reply){
         QJsonArray resultList = replyJson.value("resultList").toArray();
         qDebug() << "projectResultList" << resultList;
         if(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 200){
-            qDebug() << "code 200";
             emit signalGetProjectInfoRequestFinished(&replyJson);
+            return;
         } else {
             QString error = replyJson.value("error").toString();
             qDebug() << error;
             emit signalGetProjectInfoRequestError(error);
+            return;
         }
     }
 
@@ -69,13 +70,16 @@ void NetworkApi::slotRequestFinished(QNetworkReply *reply){
         QJsonArray resultList = replyJson.value("resultList").toArray();
 
         qDebug() << "deviceResultList" << resultList;
+        int code = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
         if(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 200){
             qDebug() << "code 200";
             emit signalGetDeviceAllRequestFinished(&replyJson);
+            return;
         } else {
             QString error = replyJson.value("error").toString();
             qDebug() << error;
             emit signalGetDeviceAllRequestError(error);
+            return;
         }
     }
 
@@ -93,11 +97,13 @@ void NetworkApi::slotRequestFinished(QNetworkReply *reply){
             else{
                 emit signalGetDeviceInfoRequestFinished(&replyJson);
             }
+            return;
         }
         else{
             QString error = replyJson.value("error").toString();
             qDebug() << error;
             emit signalGetDeviceInfoRequestError(error);
+            return;
         }
     }
     else if(reply->url() == QUrl(LOGOUT_URL)){
@@ -113,30 +119,37 @@ void NetworkApi::slotRequestFinished(QNetworkReply *reply){
     }
     else if(reply->url() == QUrl(ADD_PROJECT_URL)){
         if(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 201){
-            emit signalAddProjectRequestFinished();
+            emit signalAddProjectRequestFinished(0);
+            return;
         }else{
             QByteArray bytes = reply->readAll();
             QJsonObject replyJson = QJsonDocument::fromJson(bytes).object();
             QString error = replyJson.value("error").toString();
             emit signalAddProjectRequestError(error);
+            return;
         }
     } else if(reply->url() == QUrl(DELETE_PROJECT_URL)){
         if(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 204){
-            emit signalDeleteProjectRequestFinished();
+            emit signalDeleteProjectRequestFinished(0);
+            return;
         }else{
             QByteArray bytes = reply->readAll();
             QJsonObject replyJson = QJsonDocument::fromJson(bytes).object();
             QString error = replyJson.value("error").toString();
-            emit signalDeleteProjectRequestError(error);
+            emit signalDeleteProjectRequestError(0,error);
+            return;
         }
     } else if(reply->url() == QUrl(UPDATE_PROJECT_URL)){
         if(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 201){
             emit signalUpdateProjectRequestFinished();
+            return;
         }else{
             QByteArray bytes = reply->readAll();
+            qDebug()<< QString(bytes);
             QJsonObject replyJson = QJsonDocument::fromJson(bytes).object();
             QString error = replyJson.value("error").toString();
             emit signalUpdateProjectRequestError(error);
+            return;
         }
     } else if(reply->url() == QUrl(GET_USER_URL)){
         QByteArray bytes = reply->readAll();
@@ -145,110 +158,134 @@ void NetworkApi::slotRequestFinished(QNetworkReply *reply){
         QJsonArray resultList = replyJson.value("resultList").toArray();
         if(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 200){
             emit signalGetUserAllRequestFinished(&replyJson);
+            return;
         }else{
             QString error = replyJson.value("error").toString();
             emit signalGetUserAllRequestError(error);
+            return;
         }
     } else if(reply->url() == QUrl(ADD_USER_URL)){
         if(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 201){
-            emit signalAddUserRequestFinished();
+            emit signalAddUserRequestFinished(1);
+            return;
         }else {
             QByteArray bytes = reply->readAll();
             QJsonObject replyJson = QJsonDocument::fromJson(bytes).object();
             QString error = replyJson.value("error").toString();
             emit signalAddUsertRequestError(error);
+            return;
         }
     } else if(reply->url() == QUrl(DELETE_USER_URL)){
         if(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 204){
-            emit signalDeleteUserRequestFinished();
+            emit signalDeleteUserRequestFinished(1);
+            return;
         }else {
             QByteArray bytes = reply->readAll();
             QJsonObject replyJson = QJsonDocument::fromJson(bytes).object();
             QString error = replyJson.value("error").toString();
-            emit signalDeleteUserRequestError(error);
+            emit signalDeleteUserRequestError(1,error);
+            return;
         }
     } else if(reply->url() == QUrl(UPDATE_USER_URL)){
         if(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 201){
             emit signalUpdateUserRequestFinished();
+            return;
         } else {
             QByteArray bytes = reply->readAll();
             QJsonObject replyJson = QJsonDocument::fromJson(bytes).object();
             QString error = replyJson.value("error").toString();
             emit signalUpdateUserRequestError(error);
+            return;
         }
     }
     //end of mine
     else if(reply->url() == QUrl(ADD_DEVICE_URL)){
+        qDebug() << reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
         if(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 201){
-            emit signalAddDeviceRequestFinished();
+            emit signalAddDeviceRequestFinished(2);
+            return;
         }
         else{
             QByteArray bytes = reply->readAll();
+            qDebug() << QString(bytes);
             QJsonObject replyJson = QJsonDocument::fromJson(bytes).object();
             QString error = replyJson.value("error").toString();
             emit signalAddDeviceReuqestError(error);
+            return;
         }
     }
     else if(reply->url() == QUrl(DELETE_DEVICE_URL)){
         if(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 204){
-            emit signalDeleteDeviceReuqestFinished();
+            emit signalDeleteDeviceReuqestFinished(2);
+            return;
         }
         else{
             QByteArray bytes = reply->readAll();
             qDebug()<< bytes;
             QJsonObject replyJson = QJsonDocument::fromJson(bytes).object();
             QString error = replyJson.value("error").toString();
-            emit signalDeleteDeviceReuqestError(error);
+            emit signalDeleteDeviceReuqestError(2,error);
+            return;
         }
     }
     else if(reply->url() == QUrl(UPDATE_DEVICE_URL)){
         if(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 201){
             emit signalUpdateDeviceRequestFinished();
+            return;
         }else {
             QByteArray bytes = reply->readAll();
             QJsonObject replyJson = QJsonDocument::fromJson(bytes).object();
             QString error = replyJson.value("error").toString();
-            emit signalDeleteDeviceReuqestError(error);
+            emit signalDeleteDeviceReuqestError(2,error);
+            return;
         }
     }
     else if(reply->url() == QUrl(ADD_REPORT_URL)){
         if(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 201){
             emit signalAddReportRequestFinished();
+            return;
         }else{
             QByteArray bytes = reply->readAll();
             QJsonObject replyJson = QJsonDocument::fromJson(bytes).object();
             QString error = replyJson.value("error").toString();
             emit signalAddReportRequestError(error);
+            return;
         }
     }
     else if(reply->url() == QUrl(GET_REPORT_URL)){
         if(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 200){
             emit signalGetReportRequestFinished();
+            return;
         }else {
             QByteArray bytes = reply->readAll();
             QJsonObject replyJson = QJsonDocument::fromJson(bytes).object();
             QString error = replyJson.value("error").toString();
             emit signalGetReportRequestError(error);
+            return;
         }
     }
     else if(reply->url() == QUrl(ADD_ALARM_URL)){
         if(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 201){
             emit signalAddAlarmRequestFinished();
+            return;
         }else{
             QByteArray bytes = reply->readAll();
             QJsonObject replyJson = QJsonDocument::fromJson(bytes).object();
             QString error = replyJson.value("error").toString();
             emit signalAddReportRequestError(error);
+            return;
         }
     }
     else if(reply->url() == QUrl(GET_ALARM_URL)){
         if(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 200){
             emit signalGetAlarmRequestFinished();
+            return;
         }else {
             QByteArray bytes = reply->readAll();
             QJsonObject replyJson = QJsonDocument::fromJson(bytes).object();
             QString error = replyJson.value("error").toString();
             emit signalGetReportRequestError(error);
+            return;
         }
     }
 }
@@ -264,7 +301,8 @@ void NetworkApi::loginRequest(QJsonObject info){
 
 void NetworkApi::getProjectInfoRequest(){//post project for id
     QByteArray array;
-    array.append("keys=projectId");
+    QString keys = "projectId+name";
+    array.append("keys="+keys.toUtf8().toPercentEncoding());
 
     QNetworkRequest networkRequest;
     networkRequest.setRawHeader("Set-Cookie", getCookie());
@@ -335,9 +373,9 @@ void NetworkApi::addUserRequest(QJsonObject info){
     networkManager->post(networkRequest, array);
 }
 
-void NetworkApi::deleteProjectRequest(QJsonObject info){
+void NetworkApi::deleteProjectRequest(QString itemId){
     QByteArray array;
-    array.append("ids="+info.value("ids").toString().toUtf8().toPercentEncoding());
+    array.append("ids="+ itemId.toUtf8().toPercentEncoding());
     qDebug() << array;
     QNetworkRequest networkRequest;
     networkRequest.setRawHeader("Set-Cookie", getCookie());
@@ -345,9 +383,9 @@ void NetworkApi::deleteProjectRequest(QJsonObject info){
     networkManager->post(networkRequest, array);
 }
 
-void NetworkApi::deleteUserRequest(QJsonObject info){
+void NetworkApi::deleteUserRequest(QString itemId){
     QByteArray array;
-    array.append("ids="+info.value("ids").toString().toUtf8().toPercentEncoding());
+    array.append("ids="+itemId.toUtf8().toPercentEncoding());
     qDebug() << array;
     QNetworkRequest networkRequest;
     networkRequest.setRawHeader("Set-Cookie", getCookie());
@@ -357,22 +395,28 @@ void NetworkApi::deleteUserRequest(QJsonObject info){
 
 void NetworkApi::updateProjectRequest(QJsonObject info){
     QByteArray array;
-    array.append("name="+info.value("name").toString().toUtf8().toPercentEncoding());
+    QString keys = "name+address+remarks";
+
+    array.append("ids="+QString::number(info.value("ids").toInt()).toUtf8().toPercentEncoding());
+    array.append("&keys="+keys.toUtf8().toPercentEncoding());
+    //+isAutoInspect+isAutoTest+isAutoPrint+inspectTime+beforeOpenValveLowerPressure+beforeOpenValveUpperPressure+afterOpenValveLowerPressure+afterOpenValveUpperPressure+upperFlow+lowerFlow+upperTemper+lowerTemper
+
+    array.append("&name="+info.value("name").toString().toUtf8().toPercentEncoding());
     array.append("&address="+info.value("address").toString().toUtf8().toPercentEncoding());
     array.append("&remarks="+info.value("remarks").toString().toUtf8().toPercentEncoding());
-    array.append("&isAutoInspect="+info.value("isAutoInspect").toString().toUtf8().toPercentEncoding());
-    array.append("&isAutoTest="+info.value("isAutoTest").toString().toUtf8().toPercentEncoding());
-    array.append("&isAutoPrint="+info.value("isAutoPrint").toString().toUtf8().toPercentEncoding());
-    array.append("&inspectTime="+info.value("inspectTime").toString().toUtf8().toPercentEncoding());
-    array.append("&testTime="+info.value("testTime").toString().toUtf8().toPercentEncoding());
-    array.append("&beforeOpenValveLowerPressure="+info.value("beforeOpenValveLowerPressure").toString().toUtf8().toPercentEncoding());
-    array.append("&beforeOpenValveUpperPressure="+info.value("beforeOpenValveUpperPressure").toString().toUtf8().toPercentEncoding());
-    array.append("&afterOpenValveLowerPressure="+info.value("afterOpenValveLowerPressure").toString().toUtf8().toPercentEncoding());
-    array.append("&afterOpenValveUpperPressure="+info.value("afterOpenValveUpperPressure").toString().toUtf8().toPercentEncoding());
-    array.append("&upperFlow="+info.value("upperFlow").toString().toUtf8().toPercentEncoding());
-    array.append("&lowerFlow="+info.value("lowerFlow").toString().toUtf8().toPercentEncoding());
-    array.append("&upperTemper="+info.value("upperTemper").toString().toUtf8().toPercentEncoding());
-    array.append("& LowerTemper="+info.value(" LowerTemper").toString().toUtf8().toPercentEncoding());
+//    array.append("&isAutoInspect="+QString::number(info.value("isAutoInspect").toBool()));
+//    array.append("&isAutoTest="+QString::number(info.value("isAutoTest").toBool()));
+//    array.append("&isAutoPrint="+QString::number(info.value("isAutoPrint").toBool()));
+//    array.append("&inspectTime="+QString::number(info.value("inspectTime").toDouble()));
+////    array.append("&testTime="+QString::number(info.value("testTime").toDouble()));
+//    array.append("&beforeOpenValveLowerPressure="+QString::number(info.value("beforeOpenValveLowerPressure").toDouble()));
+//    array.append("&beforeOpenValveUpperPressure="+QString::number(info.value("beforeOpenValveUpperPressure").toDouble()));
+//    array.append("&afterOpenValveLowerPressure="+QString::number(info.value("afterOpenValveLowerPressure").toDouble()));
+//    array.append("&afterOpenValveUpperPressure="+QString::number(info.value("afterOpenValveUpperPressure").toDouble()));
+//    array.append("&upperFlow="+QString::number(info.value("upperFlow").toDouble()));
+//    array.append("&lowerFlow="+QString::number(info.value("lowerFlow").toDouble()));
+//    array.append("&upperTemper="+QString::number(info.value("upperTemper").toDouble()));
+//    array.append("&lowerTemper="+QString::number(info.value(" lowerTemper").toDouble()));
 
     qDebug() << array;
     QNetworkRequest networkRequest;
@@ -383,8 +427,11 @@ void NetworkApi::updateProjectRequest(QJsonObject info){
 
 void NetworkApi::updateUserRequest(QJsonObject info){
     QByteArray array;
-    array.append("password="+info.value("password").toString().toUtf8().toPercentEncoding());
-    array.append("&type="+info.value("type").toString().toUtf8().toPercentEncoding());
+    QString keys = "password+type";
+    array.append("ids="+QString::number(info.value("ids").toInt()).toUtf8().toPercentEncoding());
+    array.append("&keys="+keys.toUtf8().toPercentEncoding());
+    array.append("&password="+info.value("password").toString().toUtf8().toPercentEncoding());
+    array.append("&type="+QString::number(info.value("type").toInt()).toUtf8().toPercentEncoding());
 
     qDebug() << array;
     QNetworkRequest networkRequest;
@@ -424,14 +471,14 @@ void NetworkApi::addDeviceRequest(QJsonObject info){
     QByteArray array;
     array.append("deviceId="+info.value("deviceId").toString().toUtf8().toPercentEncoding());
     array.append("&name="+info.value("name").toString().toUtf8().toPercentEncoding());
-    array.append("&pipeDiameter=0");
-    array.append("&pipeDescribe=null");
     array.append("&address="+info.value("address").toString().toUtf8().toPercentEncoding());
-    array.append("&number=0");
-    array.append("&remarks=null");
     array.append("&k="+QString::number(info.value("k").toInt()).toUtf8().toPercentEncoding());
-    array.append("&cDeviceState=1");
     array.append("&project="+QString::number(info.value("project").toInt()).toUtf8().toPercentEncoding());
+    array.append("&pipeDescribe=null");
+    array.append("&pipeDiameter=25");
+    array.append("&number=0");
+    array.append("&cDeviceState=1");
+    array.append("&remarks=null");
 
     qDebug()<<array;
     QNetworkRequest networkRequest;
@@ -440,9 +487,9 @@ void NetworkApi::addDeviceRequest(QJsonObject info){
     networkManager->post(networkRequest, array);
 }
 
-void NetworkApi::deleteDeviceRequest(QJsonObject info){
+void NetworkApi::deleteDeviceRequest(QString itemId){
     QByteArray array;
-    array.append("ids="+info.value("ids").toString().toUtf8().toPercentEncoding());
+    array.append("ids="+itemId.toUtf8().toPercentEncoding());
     qDebug() << array;
 
     QNetworkRequest networkRequest;
@@ -454,12 +501,16 @@ void NetworkApi::deleteDeviceRequest(QJsonObject info){
 
 void NetworkApi::updateDeviceRequest(QJsonObject info){
     QByteArray array;
+    QString keys = "name+pipeDiameter+pipeDescribe+address+number+remarks+k+project";
     array.append("ids="+info.value("ids").toString().toUtf8().toPercentEncoding());
-    array.append("&keys="+info.value("keys").toString().toUtf8().toPercentEncoding());
-    QStringList keys = info.value("keys").toString().split("+");
-    for(int i = 0; i < keys.size(); i++){
-        array.append("&"+keys.at(i)+"="+info.value(keys.at(i)).toString().toUtf8().toPercentEncoding());
-    }
+    array.append("&keys="+keys.toUtf8().toPercentEncoding());
+    array.append("&name="+info.value("name").toString().toUtf8().toPercentEncoding());
+    array.append("&pipeDiameter="+QString::number(info.value("pipeDiameter").toDouble()).toUtf8().toPercentEncoding());
+    array.append("&pipeDescribe="+info.value("pipeDescribe").toString().toUtf8().toPercentEncoding());
+    array.append("&address="+info.value("address").toString().toUtf8().toPercentEncoding());
+    array.append("&number="+QString::number(info.value("number").toInt()).toUtf8().toPercentEncoding());
+    array.append("&k="+QString::number(info.value("k").toInt()).toUtf8().toPercentEncoding());
+    array.append("&project="+QString::number(info.value("project").toInt()).toUtf8().toPercentEncoding());
 
     qDebug() << array;
     QNetworkRequest networkRequest;

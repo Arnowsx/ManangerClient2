@@ -1,7 +1,7 @@
 #include "globle.h"
 
 int Globle::userId = 1;
-QString Globle::userTypeString = "系统管理员,项目管理员,设备管理员";
+QString Globle::userTypeString = "项目管理员,设备管理员";
 int Globle::kValueList[6] = {80, 115, 161, 202, 242, 363};
 QStringList Globle::userTypeList = Globle::userTypeString.split(",");
 int Globle::userType = 1;

@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    widget = new QWidget(this);
+    widget = new QWidget();
     loginWindow = new LoginWindow();
     mainLayout = new QStackedLayout(this);
 
@@ -27,7 +27,9 @@ void MainWindow::connects(){
     connect(managerWindow, SIGNAL(signalOpenProjectTableButtonClicked(int)), this, SLOT(slotOpenTableWindow(int)));
     connect(managerWindow, SIGNAL(signalOpenUserTableButtonClicked(int)), this, SLOT(slotOpenTableWindow(int)));
     connect(managerWindow, SIGNAL(signalOpenDeviceTableButtonClicked(int)), this, SLOT(slotOpenTableWindow(int)));
-    connect(managerTableWindow, SIGNAL(signalUpdateInfoButtonClicked(int)), this, SLOT(slotOpenUpdateWindow(int)));
+
+
+//    connect(managerTableWindow, SIGNAL(signalUpdateInfoButtonClicked(int, QVector<QString>*)), this, SLOT(slotOpenUpdateWindow(int, QVector<QString>*)));
 }
 
 void MainWindow::slotLoginButtonClicked(){
@@ -40,6 +42,7 @@ void MainWindow::slotLoginButtonClicked(){
 void MainWindow::slotOpenTableWindow(int tabType){
     qDebug()<< tabType;
     managerTableWindow = new ManagerTableWindow();
+    connect(managerTableWindow, SIGNAL(signalReturnButtonClicked()), this, SLOT(slotOpenManagerWindow()));
    switch (tabType) {
    case 1:
       managerTableWindow->setTabShow(0);
@@ -57,22 +60,33 @@ void MainWindow::slotOpenTableWindow(int tabType){
    mainLayout->setCurrentWidget(managerTableWindow);
 }
 
-void MainWindow::slotOpenUpdateWindow(int type){
-    switch (type) {
-    case 0:
-        updateProjectWindow = new NewAndUpdateProjectWindow;
-        mainLayout->addWidget(updateProjectWindow);
-        mainLayout->setCurrentWidget(updateProjectWindow);
-        break;
-    case 1:
-        updateUserWindow = new NewAndUpdateUserWindow;
-        mainLayout->addWidget(updateUserWindow);
-        mainLayout->setCurrentWidget(updateUserWindow);
-        break;
-    default:
-        break;
-    }
+void MainWindow::slotOpenManagerWindow(){
+    managerWindow->refresh();
+    mainLayout->setCurrentWidget(managerWindow);
 }
+
+
+
+//void MainWindow::slotOpenUpdateWindow(int type, QVector<QString> *rowAllString){
+//    switch (type) {
+//    case 0:
+//        updateProjectWindow = new NewAndUpdateProjectWindow(rowAllString);
+//        mainLayout->addWidget(updateProjectWindow);
+//        mainLayout->setCurrentWidget(updateProjectWindow);
+//        break;
+//    case 1:
+//        updateUserWindow = new NewAndUpdateUserWindow(rowAllString);
+//        mainLayout->addWidget(updateUserWindow);
+//        mainLayout->setCurrentWidget(updateUserWindow);
+//        break;
+//    case 2:
+//        updateDeviceWindow = new NewAndUpdateDeviceWindow(rowAllString);
+//        mainLayout->addWidget(updateDeviceWindow);
+//        mainLayout->setCurrentWidget(updateDeviceWindow);
+//    default:
+//        break;
+//    }
+//}
 
 MainWindow::~MainWindow()
 {

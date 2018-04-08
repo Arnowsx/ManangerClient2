@@ -53,15 +53,15 @@ public:
     void getUserAllRequest();
     void addProjectRequest(QJsonObject info);
     void addUserRequest(QJsonObject info);
-    void deleteProjectRequest(QJsonObject info);
-    void deleteUserRequest(QJsonObject info);
+    void deleteProjectRequest(QString itemId);
+    void deleteUserRequest(QString itemId);
     void updateProjectRequest(QJsonObject info);
     void updateUserRequest(QJsonObject info);
 
     void getDeviceRequest();
     void getDeviceAllRequest();
     void addDeviceRequest(QJsonObject info);
-    void deleteDeviceRequest(QJsonObject info);
+    void deleteDeviceRequest(QString itemId);
     void updateDeviceRequest(QJsonObject info);
     void getKRequest(QString deviceId);
     void addReportRequest(QJsonObject info);
@@ -85,19 +85,19 @@ signals:
 //author W
     void signalGetProjectInfoRequestFinished(QJsonObject *reply);
     void signalGetProjectInfoRequestError(QString errorInfo);//get project info signals request&error;
-    void signalAddProjectRequestFinished();
+    void signalAddProjectRequestFinished(int type);
     void signalAddProjectRequestError(QString erroInfo);
-    void signalDeleteProjectRequestFinished();
-    void signalDeleteProjectRequestError(QString errorInfo);
+    void signalDeleteProjectRequestFinished(int type);
+    void signalDeleteProjectRequestError(int type,QString errorInfo);
     void signalUpdateProjectRequestFinished();
     void signalUpdateProjectRequestError(QString errorInfo);
 
     void signalGetUserAllRequestFinished(QJsonObject *reply);
     void signalGetUserAllRequestError(QString errorInfo);
-    void signalAddUserRequestFinished();
+    void signalAddUserRequestFinished(int type);
     void signalAddUsertRequestError(QString erroInfo);
-    void signalDeleteUserRequestFinished();
-    void signalDeleteUserRequestError(QString errorInfo);
+    void signalDeleteUserRequestFinished(int type);
+    void signalDeleteUserRequestError(int type,QString errorInfo);
     void signalUpdateUserRequestFinished();
     void signalUpdateUserRequestError(QString errorInfo);
 //end of author W
@@ -108,10 +108,10 @@ signals:
     void signalLogoutRequestSuccess();
     void signalLogoutRequestError(QString errorInfo);
 
-    void signalAddDeviceRequestFinished();
+    void signalAddDeviceRequestFinished(int type);
     void signalAddDeviceReuqestError(QString errorInfo);
-    void signalDeleteDeviceReuqestFinished();
-    void signalDeleteDeviceReuqestError(QString errorInfo);
+    void signalDeleteDeviceReuqestFinished(int type);
+    void signalDeleteDeviceReuqestError(int type,QString errorInfo);
     void signalUpdateDeviceRequestFinished();
     void signalUpdateDeviceRequestError(QString errorInfo);
 

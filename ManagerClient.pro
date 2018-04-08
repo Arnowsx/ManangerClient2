@@ -10,7 +10,7 @@ QT       += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = ManangerClient
+TARGET = ManagerClient
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -35,7 +35,8 @@ SOURCES += \
     managertablewindow.cpp \
     newandupdateprojectwindow.cpp \
     newandupdateuserwindow.cpp \
-    newandupdatedevicewindow.cpp
+    newandupdatedevicewindow.cpp \
+    searchdialog.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -46,7 +47,8 @@ HEADERS += \
     managertablewindow.h \
     newandupdateprojectwindow.h \
     newandupdateuserwindow.h \
-    newandupdatedevicewindow.h
+    newandupdatedevicewindow.h \
+    searchdialog.h
 
 FORMS += \
         mainwindow.ui \
@@ -56,7 +58,8 @@ FORMS += \
     managertablewindow.ui \
     newandupdateprojectwindow.ui \
     newandupdateuserwindow.ui \
-    newandupdatedevicewindow.ui
+    newandupdatedevicewindow.ui \
+    searchdialog.ui
 
 RESOURCES += \
     res.qrc

@@ -3,7 +3,14 @@
 
 #include <QWidget>
 #include <QTableWidget>
+#include <QVector>
+#include <QEventLoop>
+#include <QTimer>
 #include "networkapi.h"
+#include "newandupdatedevicewindow.h"
+#include "newandupdateprojectwindow.h"
+#include "newandupdateuserwindow.h"
+#include "searchdialog.h"
 
 namespace Ui {
 class ManagerTableWindow;
@@ -27,15 +34,20 @@ private:
 //    QTableWidget *userTable;
 //    QTableWidget *deviceTable;
     NetworkApi *getSelectTabTable;
+    NetworkApi *getInfoApi;
     QStringList *projectAllList;
     QStringList *userAllList;
     QStringList *deviceAllList;
+    NewAndUpdateDeviceWindow *updateDeviceWindow;
+    NewAndUpdateProjectWindow *updateProjectWindow;
+    NewAndUpdateUserWindow *updateUserWindow;
+    SearchDialog *searchDialog;
 
     int tableType;
 
 signals:
-    void signalUpdateInfoButtonClicked(int type);
-    void signalDeleteInfoButtonClicked(int type);
+    void signalUpdateInfoButtonClicked(int type, QVector<QString>*rowAllString);
+    void signalDeleteInfoButtonClicked(int type, QString itemId);
     void signalSearchInfoButtonClicked(int type);
     void signalReturnButtonClicked();
 
@@ -52,6 +64,16 @@ private slots:
     void slotDeleteInfoButtonClicked();
     void slotReturnButtonClicked();
     void slotSearchInfoButtonClicked();
+
+    void slotOpenUpdateWindow(int type, QVector<QString> *rowAllString);
+    void slotDeleteItem(int type, QString itemId);
+    void slotSearchResultSetTable(int,QString);
+
+    void slotDeleteSuccess(int);
+    void slotDeleteFailed(int type, QString error);
+
+    void slotRefreshButtonClicked();
+    void slotRefreshTable(int);
 };
 
 #endif // MANAGERTABleWINDOW_H

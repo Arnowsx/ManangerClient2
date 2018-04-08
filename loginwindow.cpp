@@ -52,14 +52,8 @@ void LoginWindow::slotLoginRequestFinished(QJsonObject *reply){
     case 1:
         emit signalLoginButtonClicked();
         break;
-    case 2:
-        QMessageBox::warning(this, "禁止访问的用户" , "抱歉，项目管理员无权登陆管理端!", QMessageBox::Ok);
-        break;
-    case 3:
-        QMessageBox::warning(this, "禁止访问的用户" , "抱歉，设备管理员无权登陆管理端!", QMessageBox::Ok);
-        break;
     default:
-        QMessageBox::warning(this, "错误", "未知类型的用户，请联系您的系统管理员确认您的信息是否正确", QMessageBox::Ok);
+        QMessageBox::warning(this, "错误", "用户名或密码输入错误！", QMessageBox::Ok);
         break;
     }
 }

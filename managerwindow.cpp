@@ -8,6 +8,7 @@ ManagerWindow::ManagerWindow(QWidget *parent):
 
         getProjectAccess = NetworkApi::getInstance();
         getProjectAccess->getProjectInfoRequest();
+        getInfoApi = NetworkApi::getInstance();
 
         projectList = new QStringList();
 
@@ -22,7 +23,9 @@ void ManagerWindow::initWindow(){
     ui->deviceProjectBelongToComboBox->addItem("[请选择]");
     ui->kValueComboBox->addItem("[请选择]");
 
-
+    QRegExp rx("[0-9a-fA-F]{8}");
+    QValidator *validator = new QRegExpValidator(rx, ui->deviceIdLineEdit);
+    ui->deviceIdLineEdit->setValidator(validator);
 
     for(int i = 0; i < Globle::userTypeList.size(); i++){
         ui->userTypeCombox->addItem(Globle::userTypeList.at(i));
@@ -36,6 +39,10 @@ void ManagerWindow::initWindow(){
 void ManagerWindow::connects(){
     connect(getProjectAccess, SIGNAL(signalGetProjectInfoRequestFinished(QJsonObject*)), this, SLOT(slotGetProjectInfoRequestFinished(QJsonObject*)));
     connect(getProjectAccess, SIGNAL(signalGetProjectInfoRequestError(QString)), this ,SLOT(slotGetProjectInfoRequestError(QString)));
+
+    connect(getInfoApi,SIGNAL(signalAddProjectRequestFinished(int)), this, SLOT(slotAddSuccess(int)));
+    connect(getInfoApi,SIGNAL(signalAddUserRequestFinished(int)), this, SLOT(slotAddSuccess(int)));
+    connect(getInfoApi,SIGNAL(signalAddDeviceRequestFinished(int)), this, SLOT(slotAddSuccess(int)));
 
     connect(ui->openProjectPushButton, SIGNAL(clicked(bool)), this, SLOT(slotOpenProjectTableButton()));
     connect(ui->openUserPushButton, SIGNAL(clicked(bool)), this, SLOT(slotOpenUserTableButton()));
@@ -52,11 +59,16 @@ void ManagerWindow::slotGetProjectInfoRequestFinished(QJsonObject *reply){
     QJsonArray result = reply->value("resultList").toArray();
     qDebug() << "total" << reply->value("total");
     qDebug() << "resultList" << reply->value("resultList");
-
+    QString projectSelectBox;
+    ui->deviceProjectBelongToComboBox->clear();
+    ui->userProjectBelongToCombox->clear();
+    ui->deviceProjectBelongToComboBox->addItem("[请选择]");
+    ui->userProjectBelongToCombox->addItem("[请选择]");
     for(int i = 0; i < result.count(); i++){
         QJsonObject jsonProjectObject = result.at(i).toObject();
-        ui->userProjectBelongToCombox->addItem(QString::number(jsonProjectObject.value("projectId").toInt()));
-        ui->deviceProjectBelongToComboBox->addItem(QString::number(jsonProjectObject.value("projectId").toInt()));
+        projectSelectBox = QString::number(jsonProjectObject.value("projectId").toInt())+"-"+jsonProjectObject.value("name").toString();
+        ui->userProjectBelongToCombox->addItem(projectSelectBox);
+        ui->deviceProjectBelongToComboBox->addItem(projectSelectBox);
     }
 }
 
@@ -76,17 +88,26 @@ void ManagerWindow::slotNewProjectButtonClicked(){
     QJsonObject projectAddJson;
     projectAddJson.insert("name", projectName);
     projectAddJson.insert("address", projecLocation);
-    projectAddJson.insert("remarks", projectRemarks);
-
-    NetworkApi::getInstance()->addProjectRequest(projectAddJson);
+    projectAddJson.insert("remarks", projectRemarks); 
+    getInfoApi->addProjectRequest(projectAddJson);
+//    NetworkApi::getInstance()->addProjectRequest(projectAddJson);
 }
 
 void ManagerWindow::slotNewUserButtonClicked(){
      QString userName;
      QString userPasswordMd5;
      QString userTypeString = ui->userTypeCombox->currentText();
+     QString userProjectString = ui->userProjectBelongToCombox->currentText();
      char userTypeChar ='0';
-     int project = ui->userProjectBelongToCombox->currentText().toInt();
+     QString projectIdString;
+     QJsonObject userJson;
+     int project;
+     if(userProjectString == "[请选择]"){
+         project = 0;
+     }else{
+         projectIdString = ui->userProjectBelongToCombox->currentText().split("-").at(0);
+         project = projectIdString.toInt();
+     }
      bool isRightNewUser = true;
 
      QByteArray baMd5;
@@ -95,10 +116,13 @@ void ManagerWindow::slotNewUserButtonClicked(){
 
       if(userTypeString == "系统管理员"){
           userTypeChar = 1;
+          userJson.insert("project", project);
       } else if(userTypeString == "项目管理员"){
           userTypeChar = 2;
+          userJson.insert("project", project);
       } else if(userTypeString == "设备管理员"){
           userTypeChar = 3;
+          userJson.insert("project", project);
       } else if(userTypeString == "[请选择]"){
           QMessageBox::warning(this, "错误", "请选择类型！", QMessageBox::Ok);
           isRightNewUser = false;
@@ -108,48 +132,58 @@ void ManagerWindow::slotNewUserButtonClicked(){
       }
 
       if(isRightNewUser){
-          QJsonObject userJson;
           userJson.insert("userName", ui->userNameLineEdit->text());
           userJson.insert("password", userPasswordMd5);
           userJson.insert("type", userTypeChar);
-          userJson.insert("project", project);
-
           qDebug() << userJson;
-          NetworkApi::getInstance()->addUserRequest(userJson);
+          getInfoApi->addUserRequest(userJson);
       }
 
 }
 
 void ManagerWindow::slotNewDeviceButtonClicked(){
-    QString deviceId;
     QString name;
-    double pipeDiameter = 0;
-    QString pipeDescribe;
     QString address;
-    int number = 0;
-    QString remarks;
+    QString deviceId;
     int K;
-    char cDeviceState;
-    char gateState;
-    double cTemperature;
-    double cPressure;
     int project;
 
-    deviceId = ui->deviceIdLineEdit->text();
     name = ui->deviceNameLineEdit->text();
     address = ui->deviceAdressLineEdit->text();
-    project = ui->deviceProjectBelongToComboBox->currentText().toInt();
-    K = ui->kValueComboBox->currentText().toInt();
+    if(ui->deviceProjectBelongToComboBox->currentText() == "[请选择]"){
+        QMessageBox::warning(this, "错误","请选择所属项目！", QMessageBox::Ok);
+    }else{
+        QString projectIdString = ui->deviceProjectBelongToComboBox->currentText().split("-").at(0);
+        project = projectIdString.toInt();
+        K = ui->kValueComboBox->currentText().toInt();
 
-    QJsonObject deviceNewJson;
-    deviceNewJson.insert("deviceId", deviceId);
-    deviceNewJson.insert("name", name);
-    deviceNewJson.insert("address", address);
-    deviceNewJson.insert("project", project);
-    deviceNewJson.insert("k", K);
+        deviceId = ui->deviceIdLineEdit->text();
+        QJsonObject deviceNewJson;
+        deviceNewJson.insert("deviceId", deviceId);
+        deviceNewJson.insert("name", name);
+        deviceNewJson.insert("address", address);
+        deviceNewJson.insert("project", project);
+        deviceNewJson.insert("k", K);
 
-    qDebug() << deviceNewJson;
-    NetworkApi::getInstance()->addDeviceRequest(deviceNewJson);
+        qDebug() << deviceNewJson;
+        getInfoApi->addDeviceRequest(deviceNewJson);
+    }
+}
+
+void ManagerWindow::slotAddSuccess(int type){
+    switch (type) {
+    case 0:
+        QMessageBox::warning(this, "成功","添加项目成功！", QMessageBox::Ok);
+        break;
+    case 1:
+        QMessageBox::warning(this, "成功","添加用户成功！", QMessageBox::Ok);
+        break;
+    case 2:
+        QMessageBox::warning(this, "成功","添加设备成功！", QMessageBox::Ok);
+        break;
+    default:
+        break;
+    };
 }
 
 void ManagerWindow::slotOpenProjectTableButton(){
@@ -162,6 +196,10 @@ void ManagerWindow::slotOpenUserTableButton(){
 
 void ManagerWindow::slotOpenDeviceTableButton(){
     emit signalOpenDeviceTableButtonClicked(3);
+}
+
+void ManagerWindow::refresh(){
+    getProjectAccess->getProjectInfoRequest();
 }
 
 ManagerWindow::~ManagerWindow(){
