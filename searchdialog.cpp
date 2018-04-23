@@ -23,6 +23,7 @@ void SearchDialog::initDialog(){
                                   "QPushButton:pressed{background-color: #2b5a52;"
                                                         "color : #ffffff;"
                                                         "border-radius:10px}");
+    this->setWindowModality(Qt::ApplicationModal);
 }
 
 void SearchDialog::SetType(int type){
@@ -44,6 +45,7 @@ void SearchDialog::SetType(int type){
 void SearchDialog::slotPushButtonClickedFinished(){
     QString text = ui->lineEdit->text();
     emit signalReturnText(type, text);
+    this->hide();
 }
 
 SearchDialog::~SearchDialog()

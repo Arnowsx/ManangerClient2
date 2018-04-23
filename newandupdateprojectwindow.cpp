@@ -54,6 +54,7 @@ void NewAndUpdateProjectWindow::initWindow(){
     ui->projectNameLineEdit->setText("请设置项目名称");
     ui->projectAddressLineEdit->setText("请设置项目地址");
     ui->remarkTextEdit->setText("请设置备注");
+    this->setWindowModality(Qt::ApplicationModal);
 //    ui->isAutoInspectCheckBox->setChecked(false);
 //    ui->isAutoTestCheckBox->setChecked(false);
 //    ui->isAutoPrintCheckBox->setChecked(false);

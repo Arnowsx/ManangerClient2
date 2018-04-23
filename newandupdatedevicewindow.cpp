@@ -44,6 +44,7 @@ void NewAndUpdateDeviceWindow::initWindow(){
         ui->kComboBox->addItem(QString::number(Globle::kValueList[i]));
     }
     NetworkApi::getInstance()->getProjectInfoRequest();
+    this->setWindowModality(Qt::ApplicationModal);
 }
 
 

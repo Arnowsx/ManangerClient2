@@ -46,6 +46,7 @@ void NewAndUpdateUserWindow::initWindow(){
                                                             "border-radius:10px}");
     ui->userTypeComboBox->addItem("系统管理员");
     ui->userTypeComboBox->addItems(Globle::userTypeList);
+    this->setWindowModality(Qt::ApplicationModal);
 }
 
 void NewAndUpdateUserWindow::connects(){
